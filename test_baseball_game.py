@@ -119,7 +119,6 @@ class TestBaseballGame(unittest.TestCase):
                 bg.main()
                 console = fakeOutput.getvalue().strip().split("\n")
                 for i in range(2, 6):
-                    print("CONSOLE", console[i].upper())
                     self.assertTrue("WRONG INPUT" in console[i].upper())
 
         input_list = [str(value) for value in range(101, 1000)]
@@ -219,5 +218,5 @@ class TestBaseballGame(unittest.TestCase):
         return result
 
 
-# if __name__ == "__main__":
-#     unittest.main()
+if __name__ == "__main__":
+    unittest.main()

@@ -220,47 +220,48 @@ def is_no(one_more_input):
 
 def main():
     print("Play Baseball")
-    # user_input = 999
-    random_number = str(get_not_duplicated_three_digit_number())
-    strikes, balls = -1, -1
-    print("Random Number is : ", random_number)
+
 
     while True:
-        user_input = input("Input guess number : ")
+        strikes, balls = -1, -1 # initialize
+        random_number = str(get_not_duplicated_three_digit_number())
+        print("Random Number is : ", random_number)
 
-        if user_input == "0":
-            print("Thank you for using this program")
-            print("End of the Game")
-            break
+        # predict
+        while True:
+            user_input = input("Input guess number : ")
 
-        elif is_validated_number(user_input):
-            strikes, balls = get_strikes_or_ball(
-                user_input, random_number
-            )
+            if user_input == "0":
+                print("Thank you for using this program.\nEnd of the Game")
+                return
+
+            elif is_validated_number(user_input):
+                strikes, balls = get_strikes_or_ball(
+                    user_input, random_number
+                )
+                
+                print(f"Strikes : {strikes}, Balls : {balls}")
+
+                if strikes == 3:
+                    break
             
-            print(f"Strikes : {strikes}, Balls : {balls}")
+            else:
+                print('Wrong input. Input again.')
 
-            if strikes == 3:
-                break
-        
-        else:
-            print('Wrong Input. Input again')
-    
-    if strikes == 3:
-
+        # get retry response
         while True:
             response = input("You win. one more?(Y/N) ")
             if is_yes(response) or is_no(response):
                 break
             else:
-                print('Wrong Input. Input again')
+                print('Wrong input. Input again.')
 
+        # retry or not
         if is_yes(response):
-            main()
+            continue
         else:
-            print("Thank you for using this program")
-            print("End of the Game")
+            print("Thank you for using this program.\nEnd of the Game")
+            return
 
-
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
